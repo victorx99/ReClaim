@@ -1,6 +1,10 @@
 
 const signupForm = document.getElementById("signupForm");
 
+// ==============================
+// SIGNUP
+// ==============================
+
 if (signupForm) {
     const roleInputs = document.querySelectorAll('input[name="role"]');
     const relationshipGroup = document.getElementById("otherRelationshipGroup");
@@ -9,7 +13,6 @@ if (signupForm) {
     const togglePassword = document.getElementById("togglePassword");
     const formMessage = document.getElementById("formMessage");
 
-    // Show the relationship field only when "Other" is selected.
     function updateRelationshipField() {
         const selectedRole = document.querySelector(
             'input[name="role"]:checked'
@@ -17,11 +20,13 @@ if (signupForm) {
 
         const isOther = selectedRole && selectedRole.value === "other";
 
-        relationshipGroup.classList.toggle("hidden", !isOther);
-        relationshipSelect.required = Boolean(isOther);
+        if (relationshipGroup && relationshipSelect) {
+            relationshipGroup.classList.toggle("hidden", !isOther);
+            relationshipSelect.required = Boolean(isOther);
 
-        if (!isOther) {
-            relationshipSelect.value = "";
+            if (!isOther) {
+                relationshipSelect.value = "";
+            }
         }
     }
 
@@ -29,34 +34,84 @@ if (signupForm) {
         input.addEventListener("change", updateRelationshipField);
     });
 
-    // Show or hide the password.
-    togglePassword.addEventListener("click", function () {
-        const isHidden = passwordInput.type === "password";
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener("click", function () {
+            const isHidden = passwordInput.type === "password";
 
-        passwordInput.type = isHidden ? "text" : "password";
-        togglePassword.textContent = isHidden ? "Hide" : "Show";
-    });
+            passwordInput.type = isHidden ? "text" : "password";
+            togglePassword.textContent = isHidden ? "Hide" : "Show";
+        });
+    }
 
-    // Demo submission: no account is created until a backend is connected.
     signupForm.addEventListener("submit", function (event) {
         event.preventDefault();
-
-        formMessage.className = "form-message";
 
         if (!signupForm.checkValidity()) {
             signupForm.reportValidity();
             return;
         }
 
-        formMessage.textContent =
-            "Success! Your signup form is working. Account creation and " +
-            "saving your details will be connected when we build the backend.";
+        try {
+            const formData = new FormData(signupForm);
 
-        formMessage.classList.add("success");
+            function getFieldValue(name, id) {
+                const element = document.getElementById(id);
+                const value = element ? element.value : formData.get(name);
+
+                return String(value || "").trim();
+            }
+
+            const selectedRole = document.querySelector(
+                'input[name="role"]:checked'
+            );
+
+            const userProfile = {
+                firstName: getFieldValue("firstName", "firstName"),
+                lastName: getFieldValue("lastName", "lastName"),
+                email: getFieldValue("email", "email"),
+                role: selectedRole ? selectedRole.value : "",
+                relationship: relationshipSelect
+                    ? relationshipSelect.value
+                    : "",
+                institution: getFieldValue("institution", "institution")
+            };
+
+            // Save the profile for the dashboard.
+            localStorage.setItem(
+                "reclaimUser",
+                JSON.stringify(userProfile)
+            );
+
+            localStorage.setItem("reclaimLoggedIn", "true");
+
+            if (formMessage) {
+                formMessage.className = "form-message success";
+                formMessage.textContent =
+                    "Signup successful! Taking you to your dashboard...";
+            }
+
+            setTimeout(function () {
+                window.location.href = "dashboard.html";
+            }, 800);
+
+        } catch (error) {
+            console.error("Signup profile could not be saved:", error);
+
+            if (formMessage) {
+                formMessage.className = "form-message";
+                formMessage.textContent =
+                    "We couldn't save your details. Please try again.";
+            }
+        }
     });
 
     updateRelationshipField();
 }
+
+
+// ==============================
+// LOGIN
+// ==============================
 
 const loginForm = document.getElementById("loginForm");
 
@@ -66,24 +121,27 @@ if (loginForm) {
     const message = document.getElementById("loginMessage");
     const forgotPassword = document.getElementById("forgotPassword");
 
-    // Show or hide the password.
-    togglePassword.addEventListener("click", function () {
-        const isHidden = passwordInput.type === "password";
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener("click", function () {
+            const isHidden = passwordInput.type === "password";
 
-        passwordInput.type = isHidden ? "text" : "password";
-        togglePassword.textContent = isHidden ? "Hide" : "Show";
-    });
+            passwordInput.type = isHidden ? "text" : "password";
+            togglePassword.textContent = isHidden ? "Hide" : "Show";
+        });
+    }
 
-    // Forgot-password demo.
-    forgotPassword.addEventListener("click", function (event) {
-        event.preventDefault();
+    if (forgotPassword) {
+        forgotPassword.addEventListener("click", function (event) {
+            event.preventDefault();
 
-        message.className = "form-message";
-        message.textContent =
-            "Password recovery will be available once email and backend services are connected.";
-    });
+            if (message) {
+                message.className = "form-message";
+                message.textContent =
+                    "Password recovery will be available once email and backend services are connected.";
+            }
+        });
+    }
 
-    // Login demo.
     loginForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -92,8 +150,16 @@ if (loginForm) {
             return;
         }
 
-        message.className = "form-message success";
-        message.textContent =
-            "Your login form is working! Actual sign-in will be enabled when we connect the backend.";
+        localStorage.setItem("reclaimLoggedIn", "true");
+
+        if (message) {
+            message.className = "form-message success";
+            message.textContent =
+                "Login successful! Taking you to your dashboard...";
+        }
+
+        setTimeout(function () {
+            window.location.href = "dashboard.html";
+        }, 800);
     });
 }
