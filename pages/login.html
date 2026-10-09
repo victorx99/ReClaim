@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log in to your ReClaim account.">
+    <title>Log In | ReClaim</title>
+
+    <link rel="stylesheet" href="../css/auth.css">
+    <script src="../js/auth.js" defer></script>
+</head>
+<body>
+
+    <header class="auth-header">
+        <a href="../index.html" class="brand">
+            <span class="brand-icon">R</span>
+            <span>ReClaim<span class="brand-dot">.</span></span>
+        </a>
+
+        <a href="../index.html" class="back-link">← Back to home</a>
+    </header>
+
+    <main class="auth-layout login-layout">
+
+        <section class="auth-intro">
+            <span class="eyebrow">WELCOME BACK</span>
+
+            <h1>Good to have<br>
+                <span>you back.</span>
+            </h1>
+
+            <p>
+                Your next recovery could be just around the corner.
+                Log in to check your reports, follow possible matches,
+                and reconnect people with their belongings.
+            </p>
+
+            <div class="trust-list">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Keep track of your lost and found reports</span>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Review possible matches and claims</span>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Manage your recovery conversations</span>
+                </div>
+            </div>
+
+            <div class="intro-note">
+                <span class="note-symbol">✳</span>
+                <p>Every lost item deserves a chance to find its way home.</p>
+            </div>
+        </section>
+
+        <section class="auth-card login-card">
+
+            <div class="form-heading">
+                <span class="step-label">YOUR RECLAIM ACCOUNT</span>
+                <h2>Welcome back</h2>
+                <p>Enter your details to continue.</p>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="loginEmail">Email address</label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="loginPassword">Password</label>
+                        <a href="#" id="forgotPassword" class="forgot-link">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="toggleLoginPassword"
+                            class="password-toggle"
+                        >
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Log in <span>→</span>
+                </button>
+
+                <p id="loginMessage" class="form-message" role="status" aria-live="polite"></p>
+
+                <div class="login-divider">
+                    <span>NEW TO RECLAIM?</span>
+                </div>
+
+                <a href="signup.html" class="create-account-button">
+                    Create an account
+                </a>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="auth-footer">
+        <p>© 2026 ReClaim. Find what you've lost. Return what you've found.</p>
+    </footer>
+
+</body>
+</html>

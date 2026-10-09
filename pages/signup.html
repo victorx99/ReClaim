@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your ReClaim account to help lost items find their way home.">
+    <title>Create Account | ReClaim</title>
+
+    <link rel="stylesheet" href="../css/auth.css">
+    <script src="../js/auth.js" defer></script>
+</head>
+<body>
+
+    <header class="auth-header">
+        <a href="../index.html" class="brand">
+            <span class="brand-icon">R</span>
+            <span>ReClaim<span class="brand-dot">.</span></span>
+        </a>
+
+        <a href="../index.html" class="back-link">← Back to home</a>
+    </header>
+
+    <main class="auth-layout">
+
+        <section class="auth-intro">
+            <span class="eyebrow">WELCOME TO RECLAIM</span>
+
+            <h1>Lost something?<br>
+                <span>Let's bring it home.</span>
+            </h1>
+
+            <p>
+                Join a community making it easier to report lost items,
+                reconnect with their owners, and return what matters.
+            </p>
+
+            <div class="trust-list">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Find items through your school or organization</span>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Keep personal contact details private</span>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span>Verify ownership before returning an item</span>
+                </div>
+            </div>
+
+            <div class="intro-note">
+                <span class="note-symbol">✳</span>
+                <p>One small report could make someone's day.</p>
+            </div>
+        </section>
+
+        <section class="auth-card">
+            <div class="form-heading">
+                <span class="step-label">LET'S GET YOU STARTED</span>
+                <h2>Create your account</h2>
+                <p>First, tell us how you're connected.</p>
+            </div>
+
+            <form id="signupForm">
+
+                <fieldset class="form-section">
+                    <legend>How are you connected to the organization you're using ReClaim through?</legend>
+
+                    <p class="helper-text">
+                        This means your school or organization, not your home address.
+                    </p>
+
+                    <div class="role-options">
+                        <label class="role-option">
+                            <input type="radio" name="role" value="student" required>
+                            <span class="role-content">
+                                <span class="role-emoji">🎓</span>
+                                <span class="role-name">Student</span>
+                            </span>
+                        </label>
+
+                        <label class="role-option">
+                            <input type="radio" name="role" value="staff">
+                            <span class="role-content">
+                                <span class="role-emoji">💼</span>
+                                <span class="role-name">Staff / Employee</span>
+                            </span>
+                        </label>
+
+                        <label class="role-option">
+                            <input type="radio" name="role" value="other">
+                            <span class="role-content">
+                                <span class="role-emoji">👋</span>
+                                <span class="role-name">Other</span>
+                            </span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div id="otherRelationshipGroup" class="form-group hidden">
+                    <label for="relationship">What's your relationship to the organization?</label>
+                    <select id="relationship" name="relationship">
+                        <option value="">Select your relationship</option>
+                        <option value="visitor">Visitor</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="volunteer">Volunteer</option>
+                        <option value="customer">Customer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="institution">School or organization</label>
+                    <input
+                        type="text"
+                        id="institution"
+                        name="institution"
+                        placeholder="Search or enter its name"
+                        autocomplete="organization"
+                        required
+                    >
+                    <p class="field-hint">
+                        Can't find yours? Enter its full name and we'll plan to verify it later.
+                    </p>
+                </div>
+
+                <div class="form-divider">
+                    <span>YOUR ACCOUNT DETAILS</span>
+                </div>
+
+                <div class="name-grid">
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="First name"
+                            autocomplete="given-name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Last name"
+                            autocomplete="family-name"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="At least 8 characters"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required
+                        >
+                        <button type="button" id="togglePassword" class="password-toggle">
+                            Show
+                        </button>
+                    </div>
+                    <p class="field-hint">Use at least 8 characters.</p>
+                </div>
+
+                <label class="terms-check">
+                    <input type="checkbox" id="terms" required>
+                    <span>
+                        I agree to use ReClaim responsibly and provide truthful
+                        information when reporting or claiming an item.
+                    </span>
+                </label>
+
+                <button type="submit" class="submit-button">
+                    Create account <span>→</span>
+                </button>
+
+                <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+
+                <p class="login-prompt">
+                    Already have an account?
+                    <a href="login.html">Log in</a>
+                </p>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="auth-footer">
+        <p>© 2026 ReClaim. Find what you've lost. Return what you've found.</p>
+    </footer>
+
+</body>
+</html>

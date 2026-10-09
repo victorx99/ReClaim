@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Item | ReClaim</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/report.css">
+    <script src="../js/report.js" defer></script>
+</head>
+<body class="report-page">
+
+    <header class="report-header">
+        <a href="dashboard.html" class="report-logo">Re<span>Claim</span></a>
+        <a href="dashboard.html" class="back-link">← Dashboard</a>
+    </header>
+
+    <main class="report-container">
+        <div class="report-heading">
+            <span class="eyebrow">LOST SOMETHING? FOUND SOMETHING?</span>
+            <h1>Let's get it <span>back.</span></h1>
+            <p>Share a few details to help reconnect an item with its owner.</p>
+        </div>
+
+        <form id="reportForm" class="report-form">
+            <h2>What would you like to report?</h2>
+
+            <div class="report-type-options">
+                <label class="type-option">
+                    <input type="radio" name="reportType" value="Lost" required>
+                    <span class="type-card">
+                        <span class="type-icon">🔎</span>
+                        <strong>I lost something</strong>
+                        <small>Help me find my item</small>
+                    </span>
+                </label>
+
+                <label class="type-option">
+                    <input type="radio" name="reportType" value="Found" required>
+                    <span class="type-card">
+                        <span class="type-icon">🤝</span>
+                        <strong>I found something</strong>
+                        <small>Help me return an item</small>
+                    </span>
+                </label>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <h2>Tell us about the item</h2>
+
+            <div class="form-field">
+                <label for="itemName">Item name <span>*</span></label>
+                <input type="text" id="itemName" name="itemName"
+                       placeholder="e.g. Wireless headphones" maxlength="100" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="category">Category <span>*</span></label>
+                    <select id="category" name="category" required>
+                        <option value="">Choose category</option>
+                        <option>Electronics</option>
+                        <option>Bags</option>
+                        <option>Wallets / Purses</option>
+                        <option>Keys</option>
+                        <option>Clothing</option>
+                        <option>Books / Documents</option>
+                        <option>Jewelry</option>
+                        <option>IDs / Cards</option>
+                        <option>Sports Equipment</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="brand">Brand / Model</label>
+                    <input type="text" id="brand" name="brand"
+                           placeholder="e.g. Sony, HP..." maxlength="100">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="color">Color</label>
+                    <input type="text" id="color" name="color"
+                           placeholder="e.g. Black" maxlength="60">
+                </div>
+
+                <div class="form-field">
+                    <label for="itemDate">Date lost / found</label>
+                    <input type="date" id="itemDate" name="itemDate">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="dateUnknown">
+                        I'm not sure of the date
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="location">Where was it lost / found? <span>*</span></label>
+                <input type="text" id="location" name="location"
+                       placeholder="e.g. Library, Block B, cafeteria" maxlength="150" required>
+                <small class="field-hint">Enter the item's location, not your home address.</small>
+            </div>
+
+            <div class="form-field">
+                <label for="description">Description and identifying details</label>
+                <textarea id="description" name="description" rows="4"
+                          maxlength="1000"
+                          placeholder="Describe the item, its condition, or any other useful details."></textarea>
+                <small class="field-hint">Keep a few unique details private so ownership can be verified later.</small>
+            </div>
+
+            <div class="form-field">
+                <label for="itemPhoto">Add a photo (optional)</label>
+                <input type="file" id="itemPhoto" name="itemPhoto"
+                       accept="image/jpeg,image/png,image/webp">
+                <small class="field-hint">JPG, PNG or WebP. Maximum 2 MB.</small>
+                <img id="photoPreview" alt="Selected item preview" hidden>
+            </div>
+
+            <div class="privacy-note">
+                <strong>🔒 Protect your privacy</strong>
+                <p>Don't include passwords, bank details, private documents or your home address.</p>
+            </div>
+
+            <button type="submit" class="submit-report">Submit report →</button>
+            <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+</body>
+</html>

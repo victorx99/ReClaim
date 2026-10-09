@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your ReClaim lost and found dashboard.">
+    <title>Dashboard | ReClaim</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <script src="../js/dashboard.js" defer></script>
+</head>
+<body class="dashboard-body">
+
+    <header class="dashboard-header">
+        <a href="../index.html" class="brand">
+            <span class="brand-icon">R</span>
+            <span>ReClaim<span class="brand-dot">.</span></span>
+        </a>
+
+        <div class="dashboard-header-right">
+            <span class="demo-label">DEMO MODE</span>
+            <a href="login.html" class="logout-link">Log in</a>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+            <div>
+                <span class="eyebrow">YOUR RECLAIM SPACE</span>
+                <h1>Let's find what matters.</h1>
+                <p>Lost something or found something? Let's get it back to its owner.</p>
+                <div class="organization-chip">
+                    <span>✳</span>
+                    <span id="organizationLabel">Your school or organization</span>
+                </div>
+            </div>
+
+            <div class="welcome-decoration" aria-hidden="true">
+                <span>R</span>
+                <i>✳</i>
+            </div>
+        </section>
+
+        <section class="report-actions" aria-label="Report an item">
+            <a href="#" class="action-card lost-action" id="lostAction">
+                <span class="action-icon">⌕</span>
+                <span class="action-text">
+                    <strong>I Lost Something</strong>
+                    <small>Report an item you're looking for</small>
+                </span>
+                <span class="action-arrow">↗</span>
+            </a>
+
+            <a href="#" class="action-card found-action" id="foundAction">
+                <span class="action-icon">✓</span>
+                <span class="action-text">
+                    <strong>I Found Something</strong>
+                    <small>Help someone recover their item</small>
+                </span>
+                <span class="action-arrow">↗</span>
+            </a>
+        </section>
+
+        <section class="dashboard-search-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Find an item</h2>
+                    <p>Search reports from your organization.</p>
+                </div>
+            </div>
+
+            <form id="dashboardSearch" class="dashboard-search">
+                <span class="search-icon">⌕</span>
+                <input
+                    type="search"
+                    id="itemSearch"
+                    placeholder="Try “black backpack” or “keys”"
+                    aria-label="Search reported items"
+                >
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section class="recent-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Recent reports</h2>
+                    <p>Take a look at the latest reports.</p>
+                </div>
+
+                <button type="button" class="text-button" id="viewAllReports">
+                    View all →
+                </button>
+            </div>
+
+            <div class="filter-row" aria-label="Filter reports">
+                <button class="filter-chip active" data-filter="all" type="button">All reports</button>
+                <button class="filter-chip" data-filter="lost" type="button">Lost</button>
+                <button class="filter-chip" data-filter="found" type="button">Found</button>
+            </div>
+
+            <div id="reportList" class="report-grid"></div>
+
+            <div id="emptyState" class="empty-state hidden">
+                <span class="empty-icon">⌕</span>
+                <h3>No matching reports</h3>
+                <p>Try a different search or filter.</p>
+                <button type="button" id="clearSearch" class="text-button">Clear filters</button>
+            </div>
+
+            <p class="demo-notice">
+                These are sample reports for preview only, not real reports from your school.
+            </p>
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="nav-item active" aria-current="page">
+            <span>⌂</span>
+            <small>Home</small>
+        </a>
+
+        <a href="#search" class="nav-item" id="navSearch">
+            <span>⌕</span>
+            <small>Search</small>
+        </a>
+
+        <a href="#" class="nav-item nav-report" id="navReport">
+            <span>＋</span>
+            <small>Report</small>
+        </a>
+
+        <a href="#" class="nav-item" id="navAlerts">
+            <span>♧</span>
+            <small>Alerts</small>
+        </a>
+
+        <a href="signup.html" class="nav-item">
+            <span>◎</span>
+            <small>Profile</small>
+        </a>
+    </nav>
+
+    <div id="dashboardToast" class="dashboard-toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
